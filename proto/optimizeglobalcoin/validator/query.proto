@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package optimizeglobalcoin.validator;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "optimizeglobalcoin/validator/params.proto";
+import "optimizeglobalcoin/validator/validator.proto";
+
+option go_package = "optimizeglobalcoin/x/validator/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/validator/params";
+  }
+  
+  // Queries a list of Validator items.
+  rpc Validator(QueryGetValidatorRequest) returns (QueryGetValidatorResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/validator/validator/{id}";
+  }
+  
+  rpc ValidatorAll(QueryAllValidatorRequest) returns (QueryAllValidatorResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/validator/validator";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetValidatorRequest {
+  uint64 id = 1;
+}
+
+message QueryGetValidatorResponse {
+  Validator validator = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllValidatorRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllValidatorResponse {
+  repeated Validator validators = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+

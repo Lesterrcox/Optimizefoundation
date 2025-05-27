@@ -1,0 +1,17 @@
+syntax = "proto3";
+package optimizeglobalcoin.oconsensus;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "optimizeglobalcoin/oconsensus/params.proto";
+
+option go_package = "optimizeglobalcoin/x/oconsensus/types";
+
+// GenesisState defines the oconsensus module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}

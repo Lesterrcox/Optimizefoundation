@@ -1,0 +1,58 @@
+{
+    "assetList": [
+        {
+            "id": 1,
+            "name": "McDonalds",
+            "asset_type": 2,
+            "jurisdiction": "Bahamas",
+            "owner": "ogc1nknm73uvfjwslmnwayh7n2c0fv9vwujng6sz5j",
+            "status": 1,
+            "value": {
+                "validators": ["ogc1nknm73uvfjwslmnwayh7n2c0fv9vwujng6sz5j", "ogc17zc58s96rxj79jtqqsnzt3wtx3tern6ay0a2rp"],
+                "value_usd": "99.99",
+                "timestamp": 1716883200
+            },
+            "options": "{}",
+            "timestamp": 1716883200
+        },
+        {
+            "id": 2,
+            "name": "Fast Food",
+            "asset_type": 2,
+            "jurisdiction": "Bahamas",
+            "owner": "ogc17zc58s96rxj79jtqqsnzt3wtx3tern6ay0a2rp",
+            "status": 1,
+            "value": {
+                "validators": ["ogc1nknm73uvfjwslmnwayh7n2c0fv9vwujng6sz5j", "ogc17zc58s96rxj79jtqqsnzt3wtx3tern6ay0a2rp"],
+                "value_usd": "50.99",
+                "timestamp": 1716883200
+            },
+            "options": "{}",
+            "timestamp": 1716883200
+        }
+    ],
+    "assetCount": "2",
+    "validatorList": [
+        {
+            "id": 1,
+            "name": "Validator 1",
+            "category": 5,
+            "timestamp": 1716883200,
+            "ogcAddress": "ogc1nknm73uvfjwslmnwayh7n2c0fv9vwujng6sz5j",
+            "kycInfo": "{}",
+            "options": "{}",
+            "status": 1
+        },
+        {
+            "id": 2,
+            "name": "Validator 2",
+            "category": 5,
+            "timestamp": 1716883200,
+            "ogcAddress": "ogc17zc58s96rxj79jtqqsnzt3wtx3tern6ay0a2rp",
+            "kycInfo": "{}",
+            "options": "{}",
+            "status": 1
+        }
+    ],
+    "validatorCount": "2"
+}

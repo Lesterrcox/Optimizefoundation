@@ -1,0 +1,30 @@
+syntax = "proto3";
+package optimizeglobalcoin.validator;
+
+option go_package = "optimizeglobalcoin/x/validator/types";
+
+enum ValidatorType {
+  UNRECOGNIZED = 0;
+  PROTECTORS = 1;
+  CONFIRMERS = 2;
+  AUDITORS = 3;
+  LAWYERS = 4;
+  ASSET_MANAGERS = 5;
+  OTHER = 6;
+}
+
+enum ValidatorStatus {
+  ACTIVE = 0;
+  INACTIVE = 1;
+}
+
+message Validator {
+  uint64 id = 1;
+  string name = 2; 
+  ValidatorType category = 3; 
+  uint64 timestamp = 4; 
+  string ogcAddress = 5;
+  string kycInfo = 6;
+  string options = 7; 
+  ValidatorStatus status = 8;
+}

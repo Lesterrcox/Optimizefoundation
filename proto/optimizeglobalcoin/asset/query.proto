@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package optimizeglobalcoin.asset;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "optimizeglobalcoin/asset/params.proto";
+import "optimizeglobalcoin/asset/asset.proto";
+import "optimizeglobalcoin/asset/value_votes.proto";
+
+option go_package = "optimizeglobalcoin/x/asset/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/asset/params";
+  
+  }
+  
+  // Queries a list of Asset items.
+  rpc Asset    (QueryGetAssetRequest) returns (QueryGetAssetResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/asset/{id}";
+  
+  }
+  rpc AssetAll (QueryAllAssetRequest) returns (QueryAllAssetResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/asset";
+  
+  }
+  
+  // Queries a list of ValueVotes items.
+  rpc ValueVotes    (QueryGetValueVotesRequest) returns (QueryGetValueVotesResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/asset/value_votes/{id}";
+  
+  }
+  rpc ValueVotesAll (QueryAllValueVotesRequest) returns (QueryAllValueVotesResponse) {
+    option (google.api.http).get = "/optimizeglobalcoin/asset/value_votes";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetAssetRequest {
+  uint64 id = 1;
+}
+
+message QueryGetAssetResponse {
+  Asset asset = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAssetRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAssetResponse {
+  repeated Asset                                  assets     = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetValueVotesRequest {
+  uint64 id = 1;
+}
+
+message QueryGetValueVotesResponse {
+  ValueVotes ValueVotes = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllValueVotesRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllValueVotesResponse {
+  repeated ValueVotes                             ValueVotes = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

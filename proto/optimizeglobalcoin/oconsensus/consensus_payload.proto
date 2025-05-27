@@ -1,0 +1,19 @@
+syntax = "proto3";
+package optimizeglobalcoin.oconsensus;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "optimizeglobalcoin/x/oconsensus/types";
+
+// Payload defines the necessary items for running a consensus algorithm
+message Payload {
+  string  voter     = 1;  // ob address that submitted the vote
+  bool    result    = 2;  // success or fail
+  string  value     = 3;  // value to be evaluated
+  string  err_reason  = 4;  // if fails, attach error reason
+}
+  
+// ConsensusPayload defines the payload for the consensus algorithm.
+message ConsensusPayload {
+    repeated Payload payloads = 1[ (gogoproto.nullable) = false ];
+}

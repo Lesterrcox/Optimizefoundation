@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package optimizeglobalcoin.validator;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "optimizeglobalcoin/validator/params.proto";
+import "optimizeglobalcoin/validator/validator.proto";
+
+option go_package = "optimizeglobalcoin/x/validator/types";
+
+// GenesisState defines the optimizeglobalcoin module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params    params         = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Validator validatorList  = 2 [(gogoproto.nullable) = false] ;
+           uint64    validatorCount = 3;
+
+}
+

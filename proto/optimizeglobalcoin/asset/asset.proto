@@ -1,0 +1,35 @@
+syntax = "proto3";
+package optimizeglobalcoin.asset;
+
+option go_package = "optimizeglobalcoin/x/asset/types";
+
+enum AssetType {
+  REAL_ESTATE = 0;
+  FINANCIAL_ASSET = 1;
+  OTHER_ASSET = 2;
+}
+
+enum AssetStatus {
+  PENDING = 0;
+  VALIDATED = 1;
+  INVALID = 2;
+}
+
+message ValueValidation {
+  repeated string validators = 1;
+  string value_usd = 2;
+  uint64 timestamp = 3;
+}
+
+message Asset {
+  uint64 id = 1;
+  string name = 2; 
+  AssetType asset_type = 3; 
+  string jurisdiction = 4; 
+  string owner = 5; 
+  AssetStatus status = 6; 
+  ValueValidation value = 7; 
+  string options = 8; 
+  uint64 timestamp = 9; 
+}
+

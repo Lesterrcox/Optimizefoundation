@@ -1,0 +1,11 @@
+syntax = "proto3";
+package optimizeglobalcoin.asset;
+
+option go_package = "optimizeglobalcoin/x/asset/types";
+
+message ValueVotes {
+  uint64 id = 1;
+  string voter = 2; 
+  uint64 asset_id = 3; 
+  string value_usd = 4; 
+}
