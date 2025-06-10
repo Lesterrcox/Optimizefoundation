@@ -115,7 +115,7 @@ func (k Keeper) GetAssetsByNameAndType(ctx context.Context, name string, assetTy
 }
 
 // GetAssetsForValidation returns available asset for validation.
-func (k Keeper) GetAssetsForValidation(ctx context.Context ) (list []types.Asset) {
+func (k Keeper) GetAssetsForValidation(ctx context.Context) (list []types.Asset) {
 	return k.GetAssetListByFilter(ctx, func(asset types.Asset) bool {
 		if asset.Status != types.AssetStatus_PENDING {
 			return true
@@ -124,6 +124,7 @@ func (k Keeper) GetAssetsForValidation(ctx context.Context ) (list []types.Asset
 		return false
 	})
 }
+
 // GetAssetListByFilter returns the assets using filter handler.
 func (k Keeper) GetAssetListByFilter(ctx context.Context, filterFn func(asset types.Asset) (skip bool)) (list []types.Asset) {
 

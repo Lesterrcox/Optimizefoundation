@@ -38,7 +38,7 @@ func CmdRegisterValidator() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			
+
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
 				return err
@@ -52,7 +52,7 @@ func CmdRegisterValidator() *cobra.Command {
 			if !found {
 				return errors.New("invalid category")
 			}
-			
+
 			signer := clientCtx.GetFromAddress()
 			if signer == nil {
 				return errors.New("signer address is missing")
@@ -70,7 +70,7 @@ func CmdRegisterValidator() *cobra.Command {
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}
-			
+
 			depositStr, err := cmd.Flags().GetString(cli.FlagDeposit)
 			if err != nil {
 				return err
@@ -88,7 +88,7 @@ func CmdRegisterValidator() *cobra.Command {
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), govMsg)
 		},
 	}
-	
+
 	cmd.Flags().String(cli.FlagTitle, "", "title of proposal")
 	cmd.Flags().String(cli.FlagSummary, "", "summary of proposal")
 	cmd.Flags().String(cli.FlagMetadata, "", "metadata of proposal")

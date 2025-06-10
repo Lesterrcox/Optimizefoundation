@@ -53,10 +53,13 @@ import (
 	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
 
+	swapmodulev1 "optimizeglobalcoin/api/optimizeglobalcoin/swap/module"
 	_ "optimizeglobalcoin/x/asset/module" // import for side-effects
 	assetmoduletypes "optimizeglobalcoin/x/asset/types"
 	_ "optimizeglobalcoin/x/oconsensus/module" // import for side-effects
 	oconsensusmoduletypes "optimizeglobalcoin/x/oconsensus/types"
+	_ "optimizeglobalcoin/x/swap/module" // import for side-effects
+	swapmoduletypes "optimizeglobalcoin/x/swap/types"
 	_ "optimizeglobalcoin/x/validator/module" // import for side-effects
 	validatormoduletypes "optimizeglobalcoin/x/validator/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
@@ -99,6 +102,7 @@ var (
 		validatormoduletypes.ModuleName,
 		assetmoduletypes.ModuleName,
 		oconsensusmoduletypes.ModuleName,
+		swapmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -126,6 +130,7 @@ var (
 		validatormoduletypes.ModuleName,
 		assetmoduletypes.ModuleName,
 		oconsensusmoduletypes.ModuleName,
+		swapmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -147,6 +152,7 @@ var (
 		validatormoduletypes.ModuleName,
 		assetmoduletypes.ModuleName,
 		oconsensusmoduletypes.ModuleName,
+		swapmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -301,6 +307,10 @@ var (
 			{
 				Name:   circuittypes.ModuleName,
 				Config: appconfig.WrapAny(&circuitmodulev1.Module{}),
+			},
+			{
+				Name:   swapmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&swapmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

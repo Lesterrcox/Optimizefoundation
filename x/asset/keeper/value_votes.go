@@ -120,6 +120,7 @@ func (k Keeper) GetValueVotesByAssetIdAndVoter(ctx context.Context, assetId uint
 		return false
 	})
 }
+
 // GetValueVotesByAssetId returns available valueVotes by the specified assetId.
 func (k Keeper) GetValueVotesByAssetId(ctx context.Context, assetId uint64) (list []types.ValueVotes) {
 	return k.GetValueVotesListByFilter(ctx, func(valueVotes types.ValueVotes) bool {

@@ -4,8 +4,11 @@ import (
 	"errors"
 	"io"
 
+	"optimizeglobalcoin/app"
+
 	"cosmossdk.io/log"
 	confixcmd "cosmossdk.io/tools/confix/cmd"
+	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	dbm "github.com/cosmos/cosmos-db"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/debug"
@@ -21,10 +24,9 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
+	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-
-	"optimizeglobalcoin/app"
 )
 
 func initRootCmd(
@@ -129,7 +131,9 @@ func newApp(
 
 	app, err := app.New(
 		logger, db, traceStore, true,
+		cast.ToString(appOpts.Get(flags.FlagHome)),
 		appOpts,
+		[]wasmkeeper.Option{},
 		baseappOptions...,
 	)
 	if err != nil {
@@ -171,7 +175,7 @@ func appExport(
 	appOpts = viperAppOpts
 
 	if height != -1 {
-		bApp, err = app.New(logger, db, traceStore, false, appOpts)
+		bApp, err = app.New(logger, db, traceStore, false, homePath, appOpts, []wasmkeeper.Option{}, nil)
 		if err != nil {
 			return servertypes.ExportedApp{}, err
 		}
@@ -180,7 +184,7 @@ func appExport(
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		bApp, err = app.New(logger, db, traceStore, true, appOpts)
+		bApp, err = app.New(logger, db, traceStore, true, homePath, appOpts, []wasmkeeper.Option{}, nil)
 		if err != nil {
 			return servertypes.ExportedApp{}, err
 		}

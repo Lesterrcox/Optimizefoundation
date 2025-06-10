@@ -40,7 +40,7 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Skip:      true, // skipped because authority gated
 				},
 				{
-					RpcMethod:      "RegisterValidator",
+					RpcMethod: "RegisterValidator",
 					Skip:      true, // skipped because authority gated
 				},
 				// this line is used by ignite scaffolding # autocli/tx

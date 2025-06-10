@@ -17,7 +17,7 @@ func (k Keeper) UpdateAssetsValueByVotes(ctx sdk.Context) {
 		votes := k.GetValueVotesByAssetId(ctx, asset.Id)
 		if len(votes) < 1 {
 			continue
-		}	
+		}
 
 		// Update Transaction Request Data using votes
 		k.UpdateAssetValue(ctx, votes, asset)

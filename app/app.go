@@ -80,6 +80,12 @@ import (
 	validatormodulekeeper "optimizeglobalcoin/x/validator/keeper"
 
 	oconsensusmodulekeeper "optimizeglobalcoin/x/oconsensus/keeper"
+	swapmodulekeeper "optimizeglobalcoin/x/swap/keeper"
+
+	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
+
+	_ "github.com/CosmWasm/wasmd/x/wasm" // import for side-effects
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"optimizeglobalcoin/docs"
@@ -148,10 +154,14 @@ type App struct {
 	ScopedICAControllerKeeper capabilitykeeper.ScopedKeeper
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 	ScopedKeepers             map[string]capabilitykeeper.ScopedKeeper
+	ScopedWasmKeeper          capabilitykeeper.ScopedKeeper
 
 	ValidatorKeeper  validatormodulekeeper.Keeper
 	AssetKeeper      assetmodulekeeper.Keeper
 	OconsensusKeeper oconsensusmodulekeeper.Keeper
+	SwapKeeper       swapmodulekeeper.Keeper
+
+	WasmKeeper wasmkeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -204,7 +214,9 @@ func New(
 	db dbm.DB,
 	traceStore io.Writer,
 	loadLatest bool,
+	homePath string,
 	appOpts servertypes.AppOptions,
+	wasmOpts []wasmkeeper.Option,
 	baseAppOptions ...func(*baseapp.BaseApp),
 ) (*App, error) {
 	var (
@@ -256,6 +268,7 @@ func New(
 		&app.NFTKeeper,
 		&app.GroupKeeper,
 		&app.CircuitBreakerKeeper,
+		&app.SwapKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)
@@ -274,7 +287,7 @@ func New(
 	}
 
 	// register legacy modules
-	if err := app.registerIBCModules(appOpts); err != nil {
+	if err := app.registerIBCModules(appOpts, wasmOpts, homePath); err != nil {
 		return nil, err
 	}
 

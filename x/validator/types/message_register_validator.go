@@ -12,10 +12,10 @@ func NewMsgRegisterValidator(authority string, ogcAddress string, name string, c
 	return &MsgRegisterValidator{
 		Authority:  authority,
 		OgcAddress: ogcAddress,
-		Name:     name,
-		Category: category,
-		KycInfo:  kycInfo,
-		Options:  options,
+		Name:       name,
+		Category:   category,
+		KycInfo:    kycInfo,
+		Options:    options,
 	}
 }
 
