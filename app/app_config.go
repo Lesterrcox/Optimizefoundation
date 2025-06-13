@@ -62,6 +62,7 @@ import (
 	swapmoduletypes "optimizeglobalcoin/x/swap/types"
 	_ "optimizeglobalcoin/x/validator/module" // import for side-effects
 	validatormoduletypes "optimizeglobalcoin/x/validator/types"
+	wasmTypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -103,6 +104,7 @@ var (
 		assetmoduletypes.ModuleName,
 		oconsensusmoduletypes.ModuleName,
 		swapmoduletypes.ModuleName,
+		wasmTypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -131,6 +133,7 @@ var (
 		assetmoduletypes.ModuleName,
 		oconsensusmoduletypes.ModuleName,
 		swapmoduletypes.ModuleName,
+		wasmTypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -153,6 +156,7 @@ var (
 		assetmoduletypes.ModuleName,
 		oconsensusmoduletypes.ModuleName,
 		swapmoduletypes.ModuleName,
+		wasmTypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -173,6 +177,7 @@ var (
 		{Account: ibctransfertypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner}},
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
+		{Account: wasmTypes.ModuleName},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 

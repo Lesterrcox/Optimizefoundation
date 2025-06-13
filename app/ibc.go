@@ -240,6 +240,7 @@ func RegisterIBC(registry cdctypes.InterfaceRegistry) map[string]appmodule.AppMo
 		capabilitytypes.ModuleName:  capability.AppModule{},
 		ibctm.ModuleName:            ibctm.AppModule{},
 		solomachine.ModuleName:      solomachine.AppModule{},
+		wasmTypes.ModuleName:        wasm.AppModule{},
 	}
 
 	for name, m := range modules {
